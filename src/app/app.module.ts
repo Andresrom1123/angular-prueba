@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { BrandRepository } from './repository/brand'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [BrandRepository],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

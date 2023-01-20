@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { BrandRepository } from './repository/brand'
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,7 @@ export class AppComponent {
   modal = false;
   searchTerm = '';
   sort = 'name-a';
-
-  brands = ['audi', 'toyota', 'mazda', 'audi', 'toyota', 'mazda']
+  brands = [];
 
   checkoutForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -22,8 +22,19 @@ export class AppComponent {
   });
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private brandRepo: BrandRepository
   ) {}
+
+  ngOnInit() {
+    this.getBrands();
+  }
+
+  // brand methods
+  private async getBrands() {
+    const data = await this.brandRepo.brands();
+    this.brands = data;
+  }
 
   selectBrand(brand: string) {
     this.selectedBrand = brand
@@ -33,15 +44,19 @@ export class AppComponent {
     this.selectedBrand = ''
   }
 
+  // alert method
   closeAlert() {
     this.error = false;
   }
 
+  // modal method
   closeModal() {
     this.checkoutForm.reset();
     this.modal = false;
   }
 
+
+  // form method
   onSubmit(): void {
     if (this.checkoutForm.status === 'VALID') {
       this.error === false;

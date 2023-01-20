@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchFilterPipe implements PipeTransform {
 
-  transform(list: string[], filterText: string, sort: string): string[] {
+  transform(list: any[], filterText: string, sort: string): any[] {
     if (!list) {
       return [];
     }
@@ -16,17 +16,17 @@ export class SearchFilterPipe implements PipeTransform {
 
     if (sort === 'name-a') {
       tempList = tempList.sort((a,b) => {
-        return a.localeCompare(b)
+        return a.name.localeCompare(b.name)
       })
     }
     if (sort === 'name-z') {
       tempList = tempList.sort((a,b) => {
-        return b.localeCompare(a)
+        return b.name.localeCompare(a.name)
       })
     }
 
     return tempList.filter((val) => {
-      return val.toLowerCase().includes(filterText);
+      return val.name.toLowerCase().includes(filterText);
     })
 
   }
