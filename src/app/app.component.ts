@@ -61,7 +61,6 @@ export class AppComponent {
     if (this.checkoutForm.status === 'VALID') {
       this.error = false;
       this.modal = true;
-      console.warn('Your has been submitted', this.checkoutForm.value);
     } else {
       this.error = true;
     }
