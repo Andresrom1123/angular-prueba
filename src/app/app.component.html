@@ -1,4 +1,7 @@
 <header class="p-5 d-flex justify-content-center bg-light">
+  <h1 class="text-center col-12">
+    {{!selectedBrand ? 'Brands' : selectedBrand | titlecase}}
+  </h1>
   <p
     *ngIf="selectedBrand"
     (click)=clearBrand()
@@ -7,9 +10,6 @@
   >
     Home
   </p>
-  <h1 class="text-center col-12">
-    {{!selectedBrand ? 'Brands' : selectedBrand | titlecase}}
-  </h1>
 </header>
 
 
@@ -42,11 +42,11 @@
     <div class="d-flex gap-5 justify-content-center flex-wrap">
       <div
         *ngFor="let brand of brands | searchFilter: searchTerm: sort"
-        class="shadow rounded justify-content-center d-flex align-items-center col-12 col-md-3"
+        class="-card shadow text-muted rounded justify-content-center d-flex align-items-center col-12 col-md-3"
         (click)=selectBrand(brand.name)
         style="height: 150px; cursor: pointer;"
       >
-        <h2 class="text-muted">{{ brand.name | titlecase }}</h2>
+        <h2>{{ brand.name | titlecase }}</h2>
       </div>
     </div>
   </section>
@@ -64,13 +64,13 @@
         <button (click)=closeAlert() type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       <div class="input-group mb-3">
-        <input required type="text" formControlName="name" placeholder="name" class="form-control" />
+        <input required type="text" formControlName="name" placeholder="Name" class="form-control" />
       </div>
       <div class="input-group mb-3">
-        <input required type="email" formControlName="email" placeholder="email" class="form-control" />
+        <input required type="email" formControlName="email" placeholder="Email" class="form-control" />
       </div>
       <div class="input-group mb-3">
-        <textarea required formControlName="message" placeholder="message" class="form-control"></textarea>
+        <textarea required formControlName="message" placeholder="Message" class="form-control"></textarea>
       </div>
       <div class="d-grid">
         <button type="submit" class="btn btn-light">Send</button>
